@@ -2,9 +2,13 @@ package com.vshal9921.realtimescan
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatTextView
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanIntentResult
+import com.journeyapps.barcodescanner.ScanOptions
 import com.vshal9921.realtimescan.org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
@@ -13,6 +17,7 @@ import org.eclipse.paho.client.mqttv3.MqttCallback
 import org.eclipse.paho.client.mqttv3.MqttClient
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttMessage
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -73,6 +78,26 @@ class MainActivity : AppCompatActivity() {
         catch (e : Exception){
             Log.d(LOG, e.printStackTrace().toString());
 
+        }
+
+        // Front camera for QR Scan
+
+        var scanOptions = ScanOptions()
+        scanOptions.setDesiredBarcodeFormats(ScanOptions.ONE_D_CODE_TYPES)
+        scanOptions.setPrompt("Scan a bbar code")
+        scanOptions.setCameraId(1)
+        scanOptions.setBeepEnabled(false)
+        scanOptions.setBarcodeImageEnabled(true)
+        barcodeLauncher.launch(scanOptions)
+    }
+
+    private val barcodeLauncher = registerForActivityResult<ScanOptions, ScanIntentResult>(
+        ScanContract()
+    ) { result: ScanIntentResult ->
+        if (result.contents == null) {
+            Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Scanned: " + result.contents, Toast.LENGTH_LONG).show()
         }
     }
 }

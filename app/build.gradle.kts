@@ -48,4 +48,5 @@ dependencies {
 
     implementation(libs.androidx.work.runtime)
     implementation(libs.org.eclipse.paho.client.mqttv3)
+    implementation(libs.zxing.android.embedded)
 }
