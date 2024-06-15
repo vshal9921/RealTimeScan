@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.vshal9921.realtimescan.org.eclipse.paho.android.service.MqttAndroidClient
 import org.eclipse.paho.client.mqttv3.IMqttActionListener
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        var textView = findViewById<AppCompatTextView>(R.id.textView)
+
         mqttAndroidClient = MqttAndroidClient(this, serverUri, clientId)
         mqttAndroidClient.setCallback(object : MqttCallback{
 
@@ -37,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             override fun messageArrived(topic: String?, message: MqttMessage?) {
                 if (message != null) {
                     Log.d(LOG, "message received =" + String(message.payload))
+                    textView.text = String(message.payload)
                 }
             }
 
