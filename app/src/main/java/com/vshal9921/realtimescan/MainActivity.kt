@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        var textView = findViewById<AppCompatTextView>(R.id.textView)
+        val textView = findViewById<AppCompatTextView>(R.id.textView)
 
         mqttAndroidClient = MqttAndroidClient(this, serverUri, clientId)
         mqttAndroidClient.setCallback(object : MqttCallback{
@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                     Log.d(LOG, "message received =" + String(message.payload))
                     textView.text = String(message.payload)
                 }
+                mqttAndroidClient.publish("client/ack", MqttMessage("Received".toByteArray()))
             }
 
             override fun deliveryComplete(token: IMqttDeliveryToken?) {
@@ -84,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
         var scanOptions = ScanOptions()
         scanOptions.setDesiredBarcodeFormats(ScanOptions.ONE_D_CODE_TYPES)
-        scanOptions.setPrompt("Scan a bbar code")
+        scanOptions.setPrompt("Scan a bar code")
         scanOptions.setCameraId(1)
         scanOptions.setBeepEnabled(false)
         scanOptions.setBarcodeImageEnabled(true)
