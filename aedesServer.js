@@ -7,10 +7,22 @@ server.listen(port, function () {
 });
 
 setInterval(() => {
-  aedes.clients.forEach(client => {
-    const message = JSON.stringify({ timestamp: Date.now() });
-    client.publish({ topic: 'server/msg', payload: message, qos: 2 }, () => {
-      console.log('Message sent to', client.id);
+  // Prepare the message
+  const message = {
+    topic: 'server/msg',
+    payload: JSON.stringify({ timestamp: Date.now() }),
+    qos: 2, // Quality of Service level
+    retain: false // Retain the message
+  };
+
+  // Publish the message to all clients
+  for (const client of Object.values(aedes.clients)) {
+    aedes.publish(message, client, (err) => {
+      if (err) {
+        console.error('Failed to publish message', err);
+      } else {
+        console.log('Message sent to', client.id);
+      }
     });
-  });
+  }
 }, 2000);
