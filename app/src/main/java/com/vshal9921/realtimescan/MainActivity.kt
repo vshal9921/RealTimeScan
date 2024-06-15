@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var mqttAndroidClient : MqttAndroidClient
     val clientId = MqttClient.generateClientId();
-    var serverUri = ""
+    var serverUri = "tcp://192.168.1.41:1883"
     var subscriptionTopic = "server/msg"
     val LOG = "mqtt"
 
