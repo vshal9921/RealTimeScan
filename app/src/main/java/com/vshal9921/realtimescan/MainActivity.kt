@@ -39,7 +39,9 @@ class MainActivity : AppCompatActivity() {
 
             override fun connectionLost(cause: Throwable?) {
                 Log.d(LOG, "connection lost =" + cause.toString())
-
+                runOnUiThread {
+                    Toast.makeText(this@MainActivity, "Connection Lost. Reconnecting ....", Toast.LENGTH_LONG).show()
+                }
             }
 
             override fun messageArrived(topic: String?, message: MqttMessage?) {
