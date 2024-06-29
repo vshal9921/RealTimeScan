@@ -17,6 +17,8 @@ package com.vshal9921.realtimescan.org.eclipse.paho.android.service;
 
 import java.util.Iterator;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -315,7 +317,7 @@ class DatabaseMessageStore implements MessageStore {
 
 			@Override
 			public boolean hasNext() {
-		        if (!hasNext){
+				if (!hasNext){
 		          	c.close();
 				}
 				return hasNext;
@@ -323,13 +325,13 @@ class DatabaseMessageStore implements MessageStore {
 
 			@Override
 			public StoredMessage next() {
-				String messageId = c.getString(c.getColumnIndex(MqttServiceConstants.MESSAGE_ID));
-				String clientHandle = c.getString(c.getColumnIndex(MqttServiceConstants.CLIENT_HANDLE));
-				String topic = c.getString(c.getColumnIndex(MqttServiceConstants.DESTINATION_NAME));
-				byte[] payload = c.getBlob(c.getColumnIndex(MqttServiceConstants.PAYLOAD));
-				int qos = c.getInt(c.getColumnIndex(MqttServiceConstants.QOS));
-				boolean retained = Boolean.parseBoolean(c.getString(c.getColumnIndex(MqttServiceConstants.RETAINED)));
-				boolean dup = Boolean.parseBoolean(c.getString(c.getColumnIndex(MqttServiceConstants.DUPLICATE)));
+				@SuppressLint("Range") String messageId = c.getString(c.getColumnIndex(MqttServiceConstants.MESSAGE_ID));
+				@SuppressLint("Range") String clientHandle = c.getString(c.getColumnIndex(MqttServiceConstants.CLIENT_HANDLE));
+				@SuppressLint("Range") String topic = c.getString(c.getColumnIndex(MqttServiceConstants.DESTINATION_NAME));
+				@SuppressLint("Range") byte[] payload = c.getBlob(c.getColumnIndex(MqttServiceConstants.PAYLOAD));
+				@SuppressLint("Range") int qos = c.getInt(c.getColumnIndex(MqttServiceConstants.QOS));
+				@SuppressLint("Range") boolean retained = Boolean.parseBoolean(c.getString(c.getColumnIndex(MqttServiceConstants.RETAINED)));
+				@SuppressLint("Range") boolean dup = Boolean.parseBoolean(c.getString(c.getColumnIndex(MqttServiceConstants.DUPLICATE)));
 
 				// build the result
 				MqttMessageHack message = new MqttMessageHack(payload);
