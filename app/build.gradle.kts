@@ -8,7 +8,7 @@ android {
     signingConfigs {
 
         getByName("debug") {
-            storeFile = file(rootProject.file(project.property("KEYSTORE_FILE") as String))
+            storeFile = rootProject.file(project.property("KEYSTORE_FILE") as String)
             storePassword = project.property("KEYSTORE_PASSWORD") as String
             keyAlias = project.property("KEY_ALIAS") as String
             keyPassword = project.property("KEY_PASSWORD") as String
