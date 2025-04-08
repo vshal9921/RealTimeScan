@@ -1,9 +1,19 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("com.google.gms.google-services")
 }
 
 android {
+    signingConfigs {
+
+        getByName("debug") {
+            storeFile = file(rootProject.file(project.property("KEYSTORE_FILE") as String))
+            storePassword = project.property("KEYSTORE_PASSWORD") as String
+            keyAlias = project.property("KEY_ALIAS") as String
+            keyPassword = project.property("KEY_PASSWORD") as String
+        }
+    }
     namespace = "com.vshal9921.realtimescan"
     compileSdk = 34
 
@@ -15,6 +25,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig = signingConfigs.getByName("debug")
     }
 
     buildTypes {
@@ -49,4 +60,7 @@ dependencies {
     implementation(libs.androidx.work.runtime)
     implementation(libs.org.eclipse.paho.client.mqttv3)
     implementation(libs.zxing.android.embedded)
+
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 }
