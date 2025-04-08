@@ -24,7 +24,7 @@ jobs:
           echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > keystore.jks
 
       - name: Build Debug APK
-        run: .\gradlew assembleDebug
+        run: ./gradlew assembleDebug
         env:
           KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
