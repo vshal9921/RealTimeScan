@@ -17,4 +17,3 @@ local.properties
 /.idea/misc.xml
 /.idea/appInsightsSettings.xml
 /RealTimeKeystore.jks
-/gradle.properties
