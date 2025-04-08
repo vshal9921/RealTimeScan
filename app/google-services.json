@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1027610363585",
+    "project_id": "realtimescan-16854",
+    "storage_bucket": "realtimescan-16854.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1027610363585:android:bbacf92a597fcd151f3640",
+        "android_client_info": {
+          "package_name": "com.vshal9921.realtimescan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj4vYXi6kVrAiobvX5BK03GgHcj3lzOus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
