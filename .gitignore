@@ -15,3 +15,6 @@
 local.properties
 /.idea/AndroidProjectSystem.xml
 /.idea/misc.xml
+/.idea/appInsightsSettings.xml
+/app/google-services.json
+/RealTimeKeystore
