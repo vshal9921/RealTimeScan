@@ -8,8 +8,7 @@ android {
     signingConfigs {
 
         getByName("debug") {
-            // storeFile = rootProject.file(project.property("KEYSTORE_FILE") as String)
-            storeFile = file(System.getenv("KEYSTORE_FILE") ?: "../RealTimeKeystore.jks")
+            storeFile = rootProject.file("RealTimeKeystore.jks")
             storePassword = project.property("KEYSTORE_PASSWORD") as String
             keyAlias = project.property("KEY_ALIAS") as String
             keyPassword = project.property("KEY_PASSWORD") as String
