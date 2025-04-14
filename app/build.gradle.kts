@@ -21,7 +21,7 @@ android {
         applicationId = "com.vshal9921.realtimescan"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
+        versionCode = 2
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
