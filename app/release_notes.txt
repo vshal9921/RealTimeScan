@@ -1,1 +1,2 @@
-1. Added testers and release notes
+1. Fix xyz bugs
+2. Enhanced usability
