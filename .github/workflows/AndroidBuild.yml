@@ -25,6 +25,14 @@ jobs:
       - name: Run Unit Tests
         run: ./gradlew testDebugUnitTest
 
+      # Upload Unit Test Report even if tests fail
+      - name: Upload Unit Test Report
+        if: always() # Ensures this runs even if previous step fails
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-report
+          path: app/build/reports/tests/
+
       - name: Build Debug APK
         run: ./gradlew assembleDebug -PKEYSTORE_PASSWORD=${{ secrets.KEYSTORE_PASSWORD }} -PKEY_ALIAS=${{ secrets.KEY_ALIAS }} -PKEY_PASSWORD=${{ secrets.KEY_PASSWORD }}
         env:
